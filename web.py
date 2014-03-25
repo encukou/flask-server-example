@@ -23,6 +23,11 @@ def hello():
         <p>
             <img src="obrazek">
         </p>
+        <form method="POST" action="ahoj">
+          Jak se jmenujes?
+          <input type="text" name="jmeno">
+          <input type="submit" value="OK">
+        </form>
       </body>
     </html>
     """
@@ -30,6 +35,12 @@ def hello():
 @app.route('/neco')
 def neco():
     return 'Tady neco je.'
+
+@app.route('/ahoj', methods=['POST'])
+def ahoj():
+    text = 'Ahoj. {} je hezke jmeno.'
+    jmeno = flask.request.form['jmeno']
+    return text.format(jmeno)
 
 @app.route('/obrazek')
 def obrazek():
