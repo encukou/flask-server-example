@@ -1,6 +1,10 @@
+import os
 import flask
 
 app = flask.Flask(__name__)
+
+# PyLadies logo z: https://github.com/pyladies/pyladies-kit/blob/master/pyladies/logos/general/logo_300x300.png
+CESTA_K_OBRAZKU = os.path.join(os.path.dirname(__file__), 'logo_300x300.png')
 
 @app.route('/')
 def hello():
@@ -44,8 +48,7 @@ def ahoj():
 
 @app.route('/obrazek')
 def obrazek():
-    jmeno_souboru = '/home/petr/pictures/eck/icon/eck256.png'
-    with open(jmeno_souboru, 'rb') as f:
+    with open(CESTA_K_OBRAZKU, 'rb') as f:
         obsah = f.read()
     return flask.Response(
         obsah,
